@@ -6,10 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Tree, TreeNode } from "react-organizational-chart";
 import LessonDetails from "./LessonDetails";
 
-const onClick = () => {
-    console.log("clicked");
-};
-
 //recursively render a node and its children
 const LessonTree = ({ node, onSelect }) => {
     return (
