@@ -1,34 +1,32 @@
 "use client";
 
-import { useState } from "react";
 import { lessonData } from "../lessonData";
 import { Button } from "@/components/ui/button";
+import { Tree, TreeNode } from "react-organizational-chart";
+
+const onClick = () => {
+    console.log("clicked");
+};
 
 //recursively render a node and its children
 function LessonTree({ node }) {
-
-    const onClick = () => {
-        console.log("clicked")
-    };
-
+    
     return (
-        <div className="flex flex-col items-center my-4">
-            <Button
-                variant="outline"
-                onClick={onClick}
-                className="w-48 h-24 text-left"
-            >
-                {node.title}
-            </Button>
-
-            {node.children?.length > 0 && (
-                <div className="flex justify-center space-x-8 mt-6">
-                    {node.children.map((child) => (
-                        <LessonTree key={child.title} node={child} />
-                    ))}
-                </div>
-            )}
-        </div>
+        <TreeNode
+            label={
+                <Button
+                    variant="outline"
+                    onClick={onClick}
+                    className="w-48 h-16 text-left text-sm"
+                >
+                    {node.title}
+                </Button>
+            }
+        >
+            {node.children?.map((child) => (
+                <LessonTree key={child.title} node={child} />
+            ))}
+        </TreeNode>
     );
 }
 
@@ -37,9 +35,27 @@ function Lesson({ selectedType }) {
 
     return (
         <div className="p-4">
-            <div className="flex justify-center">
-                <LessonTree node={data} />
-            </div>
+            <Tree
+                lineWidth={'2px'}
+                lineColor={'#94a3b8'}
+                lineBorderRadius={'10px'}
+                lineHeight={'80px'}
+                className="gap-x-8"
+                label={
+                    <Button
+                        variant="outline"
+                        onClick={onClick}
+                        className="w-48 h-16 text-left text-sm "
+                    >
+                        
+                        {data.title}
+                    </Button>
+                }
+            >
+                {data.children?.map((child) => (
+                    <LessonTree key={child.title} node={child} />
+                ))}
+            </Tree>
         </div>
     );
 }

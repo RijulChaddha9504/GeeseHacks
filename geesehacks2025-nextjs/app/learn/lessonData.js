@@ -1,3 +1,4 @@
+
 export const lessonData = {
     "Public Speaking": {
       title: "Public Speaking",
@@ -12,7 +13,6 @@ export const lessonData = {
         {
           title: "Vocal Delivery",
           children: [
-            { title: "Volume and Projection" },
             { title: "Pace and Pauses" },
             { title: "Intonation" },
           ],
@@ -20,7 +20,6 @@ export const lessonData = {
         {
           title: "Body Language",
           children: [
-            { title: "Eye Contact" },
             { title: "Hand Gestures" },
             { title: "Posture" },
           ],
@@ -66,7 +65,6 @@ export const lessonData = {
         {
           title: "Common Questions",
           children: [
-            { title: "Strengths & Weaknesses" },
             { title: "Behavioral Questions" },
             { title: "Technical Knowledge" },
           ],
