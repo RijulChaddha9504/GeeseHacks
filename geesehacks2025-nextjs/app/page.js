@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="text-center bg-gray-950 w-full h-screen">
+    <div className="text-center bg-gradient-to-br from-gray-900 to-gray-950 w-full h-screen">
 
       <div className="h-[50vh] w-full flex flex-col justify-center items-center">
         <h1 className="text-9xl font-bold mb-4 text-white">GeeseTalk</h1>
