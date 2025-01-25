@@ -8,13 +8,13 @@ const Navbar = () => {
           GeeseTalk
         </Link>
         <div className="space-x-4">
-          <Link href="" className="text-white">
+          <Link href="/" className="text-white">
             Home
           </Link>
-          <Link href="" className="text-white">
+          <Link href="/learn" className="text-white">
             Learn
           </Link>
-          <Link href="" className="text-white">
+          <Link href="/profile" className="text-white">
             Profile
           </Link>
         </div>
