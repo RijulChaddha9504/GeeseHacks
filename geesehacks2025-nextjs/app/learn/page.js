@@ -18,7 +18,7 @@ function Learn() {
   const [selectedType, setSelectedType] = useState("Public Speaking");
 
   return (
-    <div className="h-screen flex overflow-hidden bg-gradient-to-br from-gray-900 to-gray-950">
+    <div className="h-[90vh] flex overflow-hidden bg-gradient-to-br from-gray-900 to-gray-950">
       <div className="flex-1">
         <AutoSizer>
           {({ width, height }) => (

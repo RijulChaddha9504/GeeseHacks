@@ -17,7 +17,7 @@ function LessonTree({ node }) {
                 <Button
                     variant="outline"
                     onClick={onClick}
-                    className="w-48 h-16 text-left text-sm"
+                    className="w-48 h-16 text-left text-sm mx-4"
                 >
                     {node.title}
                 </Button>
@@ -34,18 +34,17 @@ function Lesson({ selectedType }) {
     const data = lessonData[selectedType];
 
     return (
-        <div className="p-4">
+        <div className="">
             <Tree
                 lineWidth={'2px'}
                 lineColor={'#94a3b8'}
                 lineBorderRadius={'10px'}
                 lineHeight={'80px'}
-                className="gap-x-8"
                 label={
                     <Button
                         variant="outline"
                         onClick={onClick}
-                        className="w-48 h-16 text-left text-sm "
+                        className="w-48 h-16 text-left text-sm mt-8"
                     >
                         
                         {data.title}
