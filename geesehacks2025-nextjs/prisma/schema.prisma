@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model accounts {
+  id                Int     @id @default(autoincrement())
+  userId            Int
+  type              String  @db.VarChar(255)
+  provider          String  @db.VarChar(255)
+  providerAccountId String  @db.VarChar(255)
+  refresh_token     String?
+  access_token      String?
+  expires_at        BigInt?
+  id_token          String?
+  scope             String?
+  session_state     String?
+  token_type        String?
+}
+
+model sessions {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  expires      DateTime @db.Timestamptz(6)
+  sessionToken String   @db.VarChar(255)
+}
+
+model users {
+  id             Int       @id @default(autoincrement())
+  name           String?   @db.VarChar(255)
+  email          String?   @db.VarChar(255)
+  emailVerified  DateTime? @db.Timestamptz(6)
+  image          String?
+  completednodes String[]
+}
+
+model verification_token {
+  identifier String
+  expires    DateTime @db.Timestamptz(6)
+  token      String
+
+  @@id([identifier, token])
+}
