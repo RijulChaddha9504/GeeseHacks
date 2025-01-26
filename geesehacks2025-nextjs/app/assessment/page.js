@@ -148,6 +148,8 @@ const AssessmentPage = () => {
         await navigator.mediaDevices.getUserMedia({ audio: true, video : true })
         .then(stream => {
           //preview.srcObject = stream;
+        const videoElement = document.querySelector('#myVideo');
+        videoElement.srcObject = stream;
           setStream(stream);
           const mediaRecorder = new MediaRecorder(stream);
           setMediaRecorder(mediaRecorder);
@@ -230,6 +232,7 @@ const AssessmentPage = () => {
                     <p className="text-white">Status: {conversation.status}</p>
                     <p className="text-white">Agent is {conversation.isSpeaking ? 'speaking' : 'listening'}</p>
                 </div>
+                <video id="myVideo" className="mt-5" width="400" height="300" autoPlay muted></video>
             </div>
         </div>
     );
