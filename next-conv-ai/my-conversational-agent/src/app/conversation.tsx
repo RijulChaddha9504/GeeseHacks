@@ -17,6 +17,7 @@ export function Conversation() {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
   const [stream, setStream] = useState<MediaStream>();
   const [theme, setTheme] = useState<string>("interview");
+  const [skill, setSkill] = useState<string>("");
 
   async function send_audio() { 
     const file = await fetch(`https://api.elevenlabs.io/v1/convai/conversations/${conversationId}/audio`, {
@@ -68,6 +69,19 @@ export function Conversation() {
   const startConversation = useCallback(async () => {
     try {
         // Request microphone permission
+        const agentId = theme == "conversational" ? '66U0J6hQxRvEZwDw2sh6' : 'NWS4fdecsHKoe5nbLjq2';
+        await fetch("https://api.elevenlabs.io/v1/convai/agents/" + agentId, {
+            method: 'PATCH',
+            headers: {
+                'xi-api-key': 'sk_ddf785be7922cc7e6979f23e951b2d90b6ff250f0aab79c9', 
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "prompt": `You are preparing the candidate for their next interview. Do not reveal any feedback about their performance. \
+                                Please target your question to improve and assess this skill: ${skill}. \
+                             Give short questions to learn key traits about the candidate for the company. Keep responses UNDER 15 words.`,
+            })
+        });
         let recordedChunks : any[] = [];
         //let recordedVideo;
         //let preview;
@@ -110,7 +124,7 @@ export function Conversation() {
 
         //   Start the conversation with your agent
         setConversationId(await conversation.startSession({
-            agentId: theme == "conversational" ? '66U0J6hQxRvEZwDw2sh6' : 'NWS4fdecsHKoe5nbLjq2', // Replace with your agent ID
+            agentId: agentId, // Replace with your agent ID
         }));
       
         console.log("conversation id: ", conversationId); 
