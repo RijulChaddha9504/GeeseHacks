@@ -3,13 +3,16 @@ import google.generativeai as genai
 import json
 import vertexai
 from vertexai.preview.vision_models import ImageGenerationModel
-import os
 
 import time
 
 class chatBot:
-        def interview_audio_mode(audio_fil):
-                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+        def configure_api_key():
+                genai.configure(api_key="REPLACE WITH YOUR KEY")
+
+        def interview_audio_mode(audio_fil, topic):
+                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
+                chatBot.configure_api_key()
 
                 myfile = genai.upload_file(audio_fil)#"decoded_video.mp4")#"petal_20250118_012647.mp4")
                 print(f"{myfile=}")
@@ -18,13 +21,13 @@ class chatBot:
                 while myfile.state.name == "PROCESSING":
                         print("processing video...")
                         time.sleep(5)
-                myfile = genai.get_file(myfile.name)
+                        myfile = genai.get_file(myfile.name)
 
 #prompt = "Analyze the emotions, facial expressions, and body language displayed in this clip. \
  #           Describe ways the person can improve their non verbal communication."
 
-                prompt = "You are an interview chatbot. Analyze the tone to ensure its formal, emotions, and how the user is showing interest in the company. After grading the user's response, provide a followup question. Provide short feedback for improvement"
-                prompt2 = "As an interview chatbot, Analyze the tone to ensure its formal, emotions, and how the user is showing interest in the company. Give them an integer grade from 0-100 regarding how well the user followed these categories. ONLY WRITE ONE INTEGER NUMBER"
+                prompt = f"You are an interview chatbot. Analyze the tone to ensure its formal, emotions, and how the user is showing interest in the company. After grading the user's response, provide a followup question. Make sure the user is staying on this topic: {topic}. Provide short feedback for improvement"
+                prompt2 = f"As an interview chatbot, Analyze the tone to ensure its formal, emotions, and how the user is showing interest in the company. Make sure the user is staying on this topic: {topic}. Give them an integer grade from 0-100 regarding how well the user followed these categories. ONLY WRITE ONE INTEGER NUMBER"
 
                 model = genai.GenerativeModel("gemini-1.5-flash")
                 result = model.generate_content([myfile, prompt])
@@ -43,12 +46,13 @@ class chatBot:
                 with open("interview_audio_results.json", "w") as json_file:
                         json.dump(interview_data, json_file, indent=4)
     
-                print("Interview results saved as interview_results.json")
+                print("Interview results saved as interview_audio_results.json")
 
         #Conversational Agent:
     
-        def conversational_audio_mode(audio_fil):
-                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+        def conversational_audio_mode(audio_fil, topic):
+                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
+                chatBot.configure_api_key()
 
                 myfile = genai.upload_file(audio_fil)
                 print(f"{myfile=}")
@@ -57,13 +61,13 @@ class chatBot:
                 while myfile.state.name == "PROCESSING":
                         print("processing video...")
                         time.sleep(5)
-                myfile = genai.get_file(myfile.name)
+                        myfile = genai.get_file(myfile.name)
 
 #prompt = "Analyze the emotions, facial expressions, and body language displayed in this clip. \
  #           Describe ways the person can improve their non verbal communication."
 
-                prompt = "Analyze the tone, emotions, and how engaging the user's voice is. Engage in a conversation with the user by providing them with a question. Provide short feedback for improvement"
-                prompt2 = "As an conversational chatbot, analyze the tone to ensure the user is interested, emotions, and how the user is showing interest in the conversation. Give them an integer grade from 0-100 regarding how well the user followed these categories. ONLY WRITE ONE INTEGER NUMBER"
+                prompt = f"Analyze the tone, emotions, and how engaging the user's voice is. Engage in a conversation with the user by providing them with a question. Provide short feedback for improvement. Make sure the user is staying on this topic: {topic}"
+                prompt2 = f"As an conversational chatbot, analyze the tone to ensure the user is interested, emotions, and how the user is showing interest in the conversation. Make sure the user is staying on this topic: {topic}. Give them an integer grade from 0-100 regarding how well the user followed these categories. ONLY WRITE ONE INTEGER NUMBER"
 
                 model = genai.GenerativeModel("gemini-1.5-flash")
                 result = model.generate_content([myfile, prompt])
@@ -84,7 +88,8 @@ class chatBot:
                 print("Conversation results saved as conversation_results.json")
     
         def conversational_video_mode(video_fil):
-                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
+                chatBot.configure_api_key()
 
                 myfile = genai.upload_file(video_fil)
                 print(f"{myfile=}")
@@ -120,7 +125,8 @@ class chatBot:
                 print("Conversation results saved as conversation_video_results.json")
         
         def interview_video_mode(video_fil):
-                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
+                chatBot.configure_api_key()
 
                 myfile = genai.upload_file(video_fil)
                 print(f"{myfile=}")
@@ -134,8 +140,8 @@ class chatBot:
 #prompt = "Analyze the emotions, facial expressions, and body language displayed in this clip. \
  #           Describe ways the person can improve their non verbal communication."
 
-                prompt = "Only analyze the video and not the audio. You are a conversation chatbot. Analyze the way the user presents them in a conversation by looking at their confidence, body language and posture, and enthusiasm to identify their interest. Give the user feedback of what they can improve afterward"
-                prompt2 = "Only analyze the video and not the audio. You are a conversation chatbot. Analyze the way the user presents them in a conversation by looking at their confidence, body language and posture, and enthusiasm to identify their interest Give the user an integer grade from 0-100 regarding how well the user followed these categories. ONLY WRITE ONE INTEGER NUMBER"
+                prompt = "You are an interview chatbot. Analyze the tone to ensure its formal, emotions, and how the user is showing interest in the company. After grading the user's response, provide a followup question. Provide short feedback for improvement"
+                prompt2 = "As an interview chatbot, Analyze the tone to ensure its formal, emotions, and how the user is showing interest in the company. Give them an integer grade from 0-100 regarding how well the user followed these categories. ONLY WRITE ONE INTEGER NUMBER"
 
                 model = genai.GenerativeModel("gemini-1.5-flash")
                 result = model.generate_content([myfile, prompt])
@@ -155,7 +161,6 @@ class chatBot:
     
                 print("Interview results saved as interview_video_results.json")
 
-chatBot.interview_audio_mode("enth_audio.wav")
-chatBot.conversational_audio_mode("enth_audio.wav")
-chatBot.conversational_video_mode("decoded_video.mp4")
-chatBot.interview_video_mode("decoded_video.mp4")
+
+chatBot.interview_audio_mode("enth_audio.wav", "dinosaur job")
+chatBot.conversational_audio_mode("enth_audio.wav", "dinosaurs")
