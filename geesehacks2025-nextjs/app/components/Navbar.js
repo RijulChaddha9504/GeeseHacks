@@ -1,6 +1,6 @@
-"use client"; // Ensure this file runs as a client component
+"use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getSession, getUserById } from "../db/queries";
 import { motion } from "framer-motion";
@@ -25,19 +25,20 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed w-full bg-gray-950 backdrop-blur-sm py-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-white text-2xl font-extrabold tracking-tight">
+    <nav className="fixed w-full bg-gray-950 backdrop-blur-sm py-3 md:py-4 z-50">
+      <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
+        <Link href="/" className="flex items-center text-white text-xl md:text-2xl font-extrabold tracking-tight">
           <motion.img
             src="/Goose.png"
             alt="GeeseTalk Logo"
-            className="inline-block h-8 w-12"
-            whileHover={{ scale: 1.7, rotate: 20 }}
+            className="h-8 w-8 md:h-10 md:w-10"
+            whileHover={{ scale: 1.5, rotate: 10 }}
             transition={{ type: "spring", stiffness: 300 }}
           />
-          GeeseTalk
+          <span className="ml-2">GeeseTalk</span>
         </Link>
-        <div className="flex items-center space-x-6">
+
+        <div className="flex items-center space-x-4 md:space-x-6 text-sm md:text-base">
           <Link href="/" className="text-gray-300 hover:text-white transition-colors">
             Home
           </Link>
