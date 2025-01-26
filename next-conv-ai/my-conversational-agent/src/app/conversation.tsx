@@ -48,11 +48,42 @@ export function Conversation() {
         console.error('Failed to convert audio to base64:', error);
       }
   }
-
+  let mediaRecorder : MediaRecorder;
   const startConversation = useCallback(async () => {
     try {
         // Request microphone permission
-        await navigator.mediaDevices.getUserMedia({ audio: true });
+        let recordedChunks : any[] = [];
+        //let recordedVideo;
+        //let preview;
+        await navigator.mediaDevices.getUserMedia({ audio: true, video : true })
+        .then(stream => {
+          //preview.srcObject = stream;
+          mediaRecorder = new MediaRecorder(stream);
+          mediaRecorder.start();
+  
+          mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+              recordedChunks.push(event.data);
+            }
+          };
+  
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            const fileReader = new FileReader();
+            fileReader.onloadend = () => {
+                if (typeof fileReader.result === 'string') {
+                    const base64String = fileReader.result.split(',')[1]; 
+                }
+            };
+            //recordedVideo.src = url;
+            //recordedVideo.controls = true; 
+            //downloadLink.href = url;
+            //downloadLink.style.display = 'inline';
+          };
+        })
+        .catch(error => {
+          console.error('Error accessing the camera:', error);
+        });
 
         //   Start the conversation with your agent
         setConversationId(await conversation.startSession({
@@ -67,6 +98,7 @@ export function Conversation() {
 
   const stopConversation = useCallback(async () => {
     await conversation.endSession();
+    mediaRecorder.stop();
     setTimeout(async () => {
       await send_audio();
     }, 3000);

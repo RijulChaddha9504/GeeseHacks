@@ -11,7 +11,7 @@ import time
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-myfile = genai.upload_file("enth_audio.wav")#"decoded_video.mp4")#"petal_20250118_012647.mp4")
+myfile = genai.upload_file("decoded_video.mp4")#"enth_audio.wav")#"decoded_video.mp4")#"petal_20250118_012647.mp4")
 print(f"{myfile=}")
 
 # Videos need to be processed before you can use them.
