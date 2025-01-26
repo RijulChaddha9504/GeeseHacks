@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { auth } from "@/auth"
-import { getUserById } from "../db/queries";
+import { getSession, getUserById } from "../db/queries";
 
 const Navbar = async () => {
-  const session = await auth();
-  const user = session?.user?.id ? await getUserById(session.user.id) : null;
+  const session = await getSession();
+  const user = (session) ? await getUserById(session?.user.id) : null;
 
   return (
     <nav className="fixed w-full bg-gray-950 backdrop-blur-sm py-4">
