@@ -21,7 +21,7 @@ const LessonTree = ({ node, onSelect, completedNodes }) => {
                         classNames(
                             "p-6 text-left text-sm mx-4 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold shadow-md hover:shadow-lg cursor-pointer transition-all duration-200",
                             {
-                                "border-green-500 border-4": completedNodes.includes(node.title)
+                                "border-green-500 border-4": completedNodes && completedNodes.includes(node.title)
                             }
                         )
                     }
@@ -61,7 +61,7 @@ const Lesson = ({ selectedType, completedNodes }) => {
                             classNames(
                                 "mt-6 p-6 text-left text-lg rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg hover:shadow-xl cursor-pointer transition-all duration-200",
                                 {
-                                    "border-green-500 border-4": completedNodes.includes(data.title)
+                                    "border-green-500 border-4": completedNodes && completedNodes.includes(data.title)
                                 }
                             )
                         }
