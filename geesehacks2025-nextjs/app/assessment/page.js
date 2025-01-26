@@ -5,24 +5,37 @@ import { lessonData } from '../learn/lessonData';
 import { useConversation } from '@11labs/react';
 import { useCallback, useState } from 'react';
 
-const flattenLessons = (node) => {
-    return [node, ...(node.children || []).flatMap(child => flattenLessons(child))];
+const flattenLessons = (node, parent = null) => {
+  return [
+    { ...node, parent },
+    ...(node.children || []).flatMap(child => flattenLessons(child, node))
+  ];
+};
+
+const findRootAncestor = (lesson) => {
+  let current = lesson;
+  while (current.parent) {
+    current = current.parent;
+  }
+  return current;
 };
 
 const AssessmentPage = () => {
     const searchParams = useSearchParams();
     const lessonTitle = decodeURIComponent(searchParams.get('lesson'));
 
-    console.log(lessonTitle)
+   //get all lessons recursively
+  const allLessons = Object.values(lessonData).flatMap(category => 
+    flattenLessons(category)
+  );
+  
+  const lesson = allLessons.find(l => l.title === lessonTitle);
+  
+  if (!lesson) return <div className="pt-20 text-white">Lesson not found</div>;
 
-    //get all lessons recursively
-    const allLessons = Object.values(lessonData).flatMap(category => flattenLessons(category));
-    const lesson = allLessons.find(l => l.title === lessonTitle);
-
-    if (!lesson) {
-        console.log("lesson not found");
-        return <div className="pt-20">Lesson not found</div>;
-    }
+  //get main category
+  const mainCategory = findRootAncestor(lesson);
+  console.log(mainCategory.title)
 
     const conversation = useConversation({
         onConnect: () => console.log('Connected'),
@@ -194,6 +207,7 @@ const AssessmentPage = () => {
             </div>
         </div>
     );
+
 }
 
-export default AssessmentPage
+export default AssessmentPage;
