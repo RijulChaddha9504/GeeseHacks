@@ -12,7 +12,7 @@ const AssessmentPage = () => {
     if (!lesson) return <div>Lesson not found</div>;
 
     return (
-        <div className="">
+        <div className="w-full h-screen">
             <h1 className="">{lesson.title} Assessment</h1>
             <p>{lesson.description}</p>
         </div>
