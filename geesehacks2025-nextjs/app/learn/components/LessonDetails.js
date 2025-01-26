@@ -49,7 +49,7 @@ const LessonDetails = ({ lesson, onClose }) => {
 
                 <CardFooter className="flex justify-center items-end">
                     <Link href={`/assessment?lesson=${lesson.title}`}>
-                        <Button onClick={onClose}>Start Lesson</Button>
+                        <Button className="hover:bg-gray-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" onClick={onClose}>Start Lesson</Button>
                     </Link>
                 </CardFooter>
             </Card>

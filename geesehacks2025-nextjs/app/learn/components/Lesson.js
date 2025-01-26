@@ -14,7 +14,7 @@ const LessonTree = ({ node, onSelect }) => {
                 <Button
                     variant="outline"
                     onClick={() => onSelect(node)}
-                    className="p-6 text-left text-sm mx-4 font-semibold"
+                    className="p-6 text-left text-sm mx-4 font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                     {node.title}
                 </Button>
@@ -45,7 +45,7 @@ const Lesson = ({ selectedType }) => {
                             title: data.title,
                             description: data.description
                         })}
-                        className="p-6 text-left text-sm mt-8"
+                        className="p-6 text-left text-sm mt-8 font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                     >
                         {data.title}
                     </Button>
