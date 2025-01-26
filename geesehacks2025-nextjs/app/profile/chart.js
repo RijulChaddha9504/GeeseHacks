@@ -13,9 +13,12 @@ const chartConfig = {
 }
 
 export default function Chart({pastTotalPerformances}) {
-
+    
     const chartData = useRef([]);
-
+    
+    if(!pastTotalPerformances){
+        return (<></>);
+    }
     const populateChart = () => {
         for(let i = 0; i < pastTotalPerformances.length; ++i){
             if(chartData.current.length > pastTotalPerformances.length) return;
