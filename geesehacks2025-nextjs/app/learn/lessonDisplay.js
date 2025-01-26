@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-function LearnPage({completedNodes}) {
+function LearnPage({ completedNodes }) {
   const [selectedType, setSelectedType] = useState("Public Speaking");
   const [expanded, setExpanded] = useState(null);
 
@@ -29,21 +29,17 @@ function LearnPage({completedNodes}) {
   };
 
   return (
-    <div className="min-h-screen flex overflow-hidden bg-gradient-to-br from-gray-900 to-gray-950 pt-16">
-      <div className="flex-1">
-        <AutoSizer>
-          {({ width, height }) => (
-            <div style={{ width, height, overflow: "auto" }}>
-              <Lesson selectedType={selectedType} completedNodes={completedNodes} />
-            </div>
-          )}
-        </AutoSizer>
+    <div className="min-h-screen flex flex-col lg:flex-row bg-gradient-to-br from-gray-900 to-gray-950 pt-16">
+      <div className="flex-1 h-[50vh] lg:h-auto overflow-auto">
+        <div className="w-full h-full px-4 sm:px-6">
+          <Lesson selectedType={selectedType} completedNodes={completedNodes} />
+        </div>
       </div>
 
-      <div className="w-[25vw] p-6 pr-8">
+      <div className="w-full lg:w-[25vw] p-4 sm:p-6 lg:pr-8 bg-gray-900 lg:bg-transparent">
         <Card className="bg-gray-900 shadow-2xl rounded-lg text-white">
           <CardHeader>
-            <CardTitle className="text-center text-2xl font-extrabold">
+            <CardTitle className="text-center text-xl sm:text-2xl font-extrabold">
               Select a Lesson Type
             </CardTitle>
             <CardDescription className="text-center text-gray-400">
@@ -59,10 +55,10 @@ function LearnPage({completedNodes}) {
                     className={`flex justify-between items-center cursor-pointer px-4 py-3 ${
                       selectedType === lesson.title
                         ? "bg-indigo-600 text-white"
-                        : "bg-gray-800 text-gray-200" 
+                        : "bg-gray-800 text-gray-200"
                     } hover:bg-indigo-500 transition-all rounded-lg`}
                   >
-                    <span className="font-medium text-lg">{lesson.title}</span>
+                    <span className="font-medium text-base sm:text-lg">{lesson.title}</span>
                     <span
                       className={`transform transition-transform ${
                         expanded === index ? "rotate-180" : "rotate-0"
@@ -73,10 +69,10 @@ function LearnPage({completedNodes}) {
                   </div>
                   {expanded === index && (
                     <div className="bg-gray-800 text-gray-300 px-4 py-2">
-                      <p>{lesson.description}</p>
+                      <p className="text-sm sm:text-base">{lesson.description}</p>
                       <Button
                         onClick={() => setSelectedType(lesson.title)}
-                        className="mt-3 bg-indigo-600 text-white w-full py-2 hover:bg-indigo-500 transition-all rounded-lg"
+                        className="mt-3 bg-indigo-600 text-white w-full py-2 text-sm sm:text-base hover:bg-indigo-500 transition-all rounded-lg"
                       >
                         Select {lesson.title}
                       </Button>
