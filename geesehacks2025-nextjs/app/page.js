@@ -10,7 +10,7 @@ import {
 export default function Home() {
   return (
     <div className="h-auto bg-gray-100">
-      <div className="bg-gradient-to-br from-gray-800 to-gray-950 pt-20 flex flex-col items-center justify-center h-[calc(100vh-10rem)] text-center">
+      <div className="bg-gradient-to-br from-gray-900 to-gray-950 pt-20 flex flex-col items-center justify-center h-[calc(100vh-10rem)] text-center">
         <h1 className="text-7xl font-extrabold mb-4 text-white tracking-tight">
           GeeseTalk
         </h1>
@@ -37,7 +37,7 @@ export default function Home() {
           <Card>
             <CardHeader>
               <img
-                src="/"
+                src="/SpeakType.png"
                 alt="Choose Speaking Type"
                 className="rounded-t-lg w-full object-cover h-40"
               />

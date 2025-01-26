@@ -5,15 +5,23 @@ import { lessonData } from '../learn/lessonData';
 import { useConversation } from '@11labs/react';
 import { useCallback, useState } from 'react';
 
+const flattenLessons = (node) => {
+    return [node, ...(node.children || []).flatMap(child => flattenLessons(child))];
+};
+
 const AssessmentPage = () => {
     const searchParams = useSearchParams();
-    const lessonTitle = searchParams.get('lesson');
-    
-    const lesson = Object.values(lessonData).flatMap(category => [category, ...(category.children || [])]).find(l => l.title === lessonTitle); //terrible way to do it
+    const lessonTitle = decodeURIComponent(searchParams.get('lesson'));
+
+    console.log(lessonTitle)
+
+    //get all lessons recursively
+    const allLessons = Object.values(lessonData).flatMap(category => flattenLessons(category));
+    const lesson = allLessons.find(l => l.title === lessonTitle);
 
     if (!lesson) {
         console.log("lesson not found");
-        return <div>Lesson not found</div>;
+        return <div className="pt-20">Lesson not found</div>;
     }
 
     const conversation = useConversation({
@@ -158,7 +166,7 @@ const AssessmentPage = () => {
   }, [conversation, mediaRecorder]);
 
     return (
-        <div className="w-full h-screen bg-gradient-to-br from-gray-800 to-gray-950 flex flex-col items-center p-6">
+        <div className="w-full h-screen bg-gradient-to-br from-gray-800 to-gray-950 flex flex-col items-center pt-16">
             <div className="flex flex-col items-center mt-20"> 
                 <h1 className="text-white">{lesson.title} Assessment</h1>
                 <p className="text-white">{lesson.description}</p>
