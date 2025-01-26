@@ -43,12 +43,16 @@ export default function Home() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <CardTitle className="px-4 pt-4">Step 1: Choose a Speaking Type</CardTitle>
+              
             </CardHeader>
             <CardContent className="flex-1 px-4 py-4">
+              <div className="flex flex-col justify-center items-center">
+              <CardTitle className="px-4 py-4">Step 1: Choose a Speaking Type</CardTitle>
               <CardDescription>
                 Select the type of speaking skill you want to practice, such as casual talk, public speaking, or interviews.
               </CardDescription>
+              </div>
+              
             </CardContent>
           </Card>
 
@@ -61,12 +65,16 @@ export default function Home() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <CardTitle className="px-4 pt-4">Step 2: Follow the Roadmap</CardTitle>
+             
             </CardHeader>
             <CardContent className="flex-1 px-4 py-4">
+              <div className="flex flex-col justify-center items-center">
+              <CardTitle className="px-4 py-4">Step 2: Follow the Roadmap</CardTitle>
               <CardDescription>
                 Use our structured roadmap to practice step-by-step and track your progress.
               </CardDescription>
+              </div>
+              
             </CardContent>
           </Card>
 
@@ -79,12 +87,15 @@ export default function Home() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <CardTitle className="px-4 pt-4">Step 3: Get Feedback</CardTitle>
             </CardHeader>
             <CardContent className="flex-0 px-4 py-4">
+              <div className="flex flex-col justify-center items-center"> 
+              <CardTitle className="px-4 py-4">Step 3: Get Feedback</CardTitle>
               <CardDescription>
                 Receive real-time feedback on your speaking performance from Mr. Goose.
               </CardDescription>
+              </div>
+            
             </CardContent>
           </Card>
         </div>
