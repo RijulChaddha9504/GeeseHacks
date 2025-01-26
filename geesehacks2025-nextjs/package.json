@@ -31,6 +31,7 @@
     "react-draggable": "^4.4.6",
     "react-organizational-chart": "^2.2.1",
     "react-virtualized-auto-sizer": "^1.0.25",
+    "recharts": "^2.15.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
