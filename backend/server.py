@@ -40,13 +40,13 @@ def upload_audio():
     topic = data["topic"]
     print(f"{data=}")
     base64_to_file(audio_file, "test_download.wav")
-    if theme == "interview":
+    if theme == "Interview Prep":
         chatBot.interview_audio_mode("test_download.mp4", topic)
-    elif theme == "conversational":
+    elif theme == "Casual Talk":
         chatBot.conversational_audio_mode("test_download.mp4", topic)
-    elif theme == "public_speaking":
+    elif theme == "Public Speaking":
         chatBot.public_speaking_audio_mode("test_download.mp4", topic)
-    elif theme == "debate":
+    elif theme == "Debates":
         chatBot.debate_audio_mode("test_download.mp4", topic)
     return "OK"
 
@@ -59,16 +59,16 @@ def upload_video():
     topic = data["topic"]
     print(f"{data=}")
     base64_to_file(video_file, "test_download.mp4")
-    if theme == "interview":
+    if theme == "Interview Prep":
         interview = chatBot.interview_mode("test_download.mp4", topic)
         return jsonify(interview)
-    elif theme == "conversational":
+    elif theme == "Casual Talk":
         conversation = chatBot.conversational_mode("test_download.mp4", topic)
         return jsonify(conversation)
-    elif theme == "public_speaking":
+    elif theme == "Public Speaking":
         public_speak = chatBot.public_speaking_mode("test_download.mp4", topic)
         return jsonify(public_speak)
-    elif theme == "debate":
+    elif theme == "Debates":
         debate = chatBot.debate_mode("test_download.mp4", topic)
         return jsonify(debate)
 

@@ -159,7 +159,7 @@ class chatBot:
                 return public_data
 
 
-chatBot.public_speaking_mode("decoded_video.mp4", "dinosaurs")
-chatBot.conversational_mode("decoded_video.mp4", "dinosaurs")
-chatBot.debate_mode("decoded_video.mp4", "dinosaurs")
-chatBot.interview_mode("decoded_video.mp4", "dinosaurs")
+# chatBot.public_speaking_mode("decoded_video.mp4", "dinosaurs")
+# chatBot.conversational_mode("decoded_video.mp4", "dinosaurs")
+# chatBot.debate_mode("decoded_video.mp4", "dinosaurs")
+# chatBot.interview_mode("decoded_video.mp4", "dinosaurs")
