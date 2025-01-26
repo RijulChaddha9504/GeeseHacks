@@ -20,15 +20,24 @@ const ProfilePage = async () => {
     const name = user ? user.name : "";
     const img = user ? user.image : "";
     const pastTotalPerformances = user.pastTotalPerformances;
+    const numTasksCompleted = user.numTasksCompleted;
 
     return (
 
         <div className="h-auto bg-gray-100 min-h-screen">
             <div className="bg-gradient-to-br from-gray-800 to-gray-950 pt-20 flex flex-col items-center justify-center min-h-screen text-center">
                 <Image alt={name + "'s profile picture"} src={img} width={196} height={196} className="mb-4 rounded-3xl"/>
-                <h1 className="text-5xl font-extrabold mb-8 text-white tracking-tight">
+                <h1 className="text-5xl font-extrabold mb-4 text-white tracking-tight">
                 {name + "'s Profile"}
                 </h1>
+                <p className="text-xl md:text-lg mb-4 text-gray-300">
+                    {
+                        numTasksCompleted === 0 ?
+                        "No previous activity from " + name + "."
+                        :
+                        name + " has completed " + String(numTasksCompleted) + "tasks."
+                    }
+                </p>
                 <div className="mt-12">
                     <Card>
                         <CardHeader>

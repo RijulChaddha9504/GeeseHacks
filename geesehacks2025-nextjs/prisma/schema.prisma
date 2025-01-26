@@ -37,6 +37,7 @@ model users {
   image                 String?
   completednodes        String[]
   pastTotalPerformances Int[]
+  numTasksCompleted     Int       @default(0)
 }
 
 model verification_token {
