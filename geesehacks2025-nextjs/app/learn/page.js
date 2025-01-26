@@ -8,4 +8,5 @@ export default async function Lessons() {
     const user = (session) ? await getUserById(session?.user.id) : null;
 
     return <LearnPage completedNodes={user.completednodes}></LearnPage>
+
 }
