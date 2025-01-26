@@ -8,8 +8,13 @@ const Navbar = async () => {
 
   return (
     <nav className="fixed w-full bg-gray-950 backdrop-blur-sm py-4">
-      <div className="container mx-auto px-4 flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-white text-2xl font-extrabold tracking-tight">
+          <img
+            src="/Goose.png" 
+            alt="GeeseTalk Logo"
+            className="inline-block h-8 w-12"
+          />
           GeeseTalk
         </Link>
         <div className="flex items-center space-x-6">
