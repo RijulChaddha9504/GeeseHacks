@@ -39,6 +39,7 @@ const LessonTree = ({ node, onSelect, completedNodes }) => {
 }
 
 const Lesson = ({ selectedType, completedNodes }) => {
+    console.log(completedNodes);
     const [selectedLesson, setSelectedLesson] = useState(null);
     const data = lessonData[selectedType];
 

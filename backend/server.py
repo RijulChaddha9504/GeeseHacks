@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 import base64
 from NEW_TEST import chatBot
@@ -60,14 +60,18 @@ def upload_video():
     print(f"{data=}")
     base64_to_file(video_file, "test_download.mp4")
     if theme == "interview":
-        chatBot.interview_mode("test_download.mp4", topic)
+        interview = chatBot.interview_mode("test_download.mp4", topic)
+        return jsonify(interview)
     elif theme == "conversational":
-        chatBot.conversational_mode("test_download.mp4", topic)
+        conversation = chatBot.conversational_mode("test_download.mp4", topic)
+        return jsonify(conversation)
     elif theme == "public_speaking":
-        chatBot.public_speaking_mode("test_download.mp4", topic)
+        public_speak = chatBot.public_speaking_mode("test_download.mp4", topic)
+        return jsonify(public_speak)
     elif theme == "debate":
-        chatBot.debate_mode("test_download.mp4", topic)
-    return "OK"
+        debate = chatBot.debate_mode("test_download.mp4", topic)
+        return jsonify(debate)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
