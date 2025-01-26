@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed w-full bg-gray-950 backdrop-blur-sm py-4">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center px-6">
         <Link href="/" className="text-white text-2xl font-extrabold tracking-tight">
           <motion.img
             src="/Goose.png"
