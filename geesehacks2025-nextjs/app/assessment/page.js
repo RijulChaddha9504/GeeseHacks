@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { lessonData } from '../learn/lessonData';
 import { useConversation } from '@11labs/react';
@@ -13,10 +14,16 @@ const flattenLessons = (node, parent = null) => {
     ];
 };
 
+export default function AssessmentPage() {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <AssessmentContent />
+      </Suspense>
+    );
+  }
 
-const AssessmentPage = () => {
-    const [results, setResults] = useState();
-    const [openModal, setOpenModal] = useState(false);
+
+function AssessmentContent() {
 
     const searchParams = useSearchParams();
     const lessonTitle = decodeURIComponent(searchParams.get('lesson'));
@@ -307,5 +314,3 @@ const AssessmentPage = () => {
         </div>
     );
 };
-
-export default AssessmentPage;
