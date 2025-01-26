@@ -32,7 +32,7 @@ const Navbar = () => {
             src="/Goose.png"
             alt="GeeseTalk Logo"
             className="inline-block h-8 w-12"
-            whileHover={{ scale: 1.2, rotate: 10 }}
+            whileHover={{ scale: 1.7, rotate: 20 }}
             transition={{ type: "spring", stiffness: 300 }}
           />
           GeeseTalk
