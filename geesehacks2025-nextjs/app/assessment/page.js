@@ -6,8 +6,10 @@ import { useSearchParams } from 'next/navigation';
 import { lessonData } from '../learn/lessonData';
 import { useConversation } from '@11labs/react';
 import { useCallback, useState } from 'react';
+
 import { createRoot } from 'react-dom/client'
 import reactStringReplace from 'react-string-replace';
+
 
 const flattenLessons = (node, parent = null) => {
     return [
@@ -231,7 +233,9 @@ function AssessmentContent() {
     return (
         // <div className='w-full min-h-screen bg-gradient-to-br from-gray-800 to-gray-950 flex flex-row items-center py-8 px-4'>
         <div className="w-full min-h-screen bg-gradient-to-br from-gray-800 to-gray-950 basis-full flex flex-col items-center py-8 px-4">
+
             <div className="max-w-4xl w-full space-y-6 mt-16 mb-12">
+
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
                         {lesson.title} Assessment
