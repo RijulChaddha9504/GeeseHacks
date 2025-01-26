@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { lessonData } from '../learn/lessonData';
 import { useConversation } from '@11labs/react';
 import { useCallback, useState } from 'react';
+import { Button, Modal } from "flowbite-react";
 
 const flattenLessons = (node, parent = null) => {
     return [
@@ -14,6 +15,9 @@ const flattenLessons = (node, parent = null) => {
 
 
 const AssessmentPage = () => {
+    const [results, setResults] = useState();
+    const [openModal, setOpenModal] = useState(false);
+
     const searchParams = useSearchParams();
     const lessonTitle = decodeURIComponent(searchParams.get('lesson'));
 
@@ -37,7 +41,7 @@ const AssessmentPage = () => {
         onError: (error) => console.error('Error:', error),
     });
 
-    const BACKEND_URL = "http://localhost:5000";
+    const BACKEND_URL = "https://9502-129-97-124-212.ngrok-free.app/"; //"http://localhost:5000";
 
     const [conversationId, setConversationId] = useState("");
     const [mediaRecorder, setMediaRecorder] = useState();
@@ -92,6 +96,10 @@ const AssessmentPage = () => {
                 "Content-Type": "application/json",
             }
         });
+        const res_json = await res.json();
+        setResults(res_json);
+        console.log(res_json);
+        setOpenModal(true);
     }
 
     const agent_id_key_map = {
@@ -212,7 +220,8 @@ const AssessmentPage = () => {
     }, [conversation, mediaRecorder]);
 
     return (
-        <div className="w-full min-h-screen bg-gradient-to-br from-gray-800 to-gray-950 flex flex-col items-center py-8 px-4">
+        // <div className='w-full min-h-screen bg-gradient-to-br from-gray-800 to-gray-950 flex flex-row items-center py-8 px-4'>
+        <div className="w-full min-h-screen bg-gradient-to-br from-gray-800 to-gray-950 basis-full flex flex-col items-center py-8 px-4">
             <div className="max-w-4xl w-full space-y-6 mb-12">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
@@ -292,6 +301,8 @@ const AssessmentPage = () => {
                         Session ID: <span className="font-mono text-cyan-400">{conversationId}</span>
                     </div>
                 )}
+
+                <p className='text-center text-white'>{"Results " + (results ? results.grade : "Pending")}</p>
             </div>
         </div>
     );
