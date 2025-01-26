@@ -14,7 +14,7 @@ const LessonTree = ({ node, onSelect }) => {
                 <Button
                     variant="outline"
                     onClick={() => onSelect(node)}
-                    className="w-48 h-16 text-left text-sm mx-4"
+                    className="p-6 text-left text-sm mx-4 font-semibold"
                 >
                     {node.title}
                 </Button>
@@ -45,7 +45,7 @@ const Lesson = ({ selectedType }) => {
                             title: data.title,
                             description: data.description
                         })}
-                        className="w-48 h-16 text-left text-sm mt-8"
+                        className="p-6 text-left text-sm mt-8"
                     >
                         {data.title}
                     </Button>
