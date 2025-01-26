@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@11labs/react": "^0.0.5",
     "@auth/pg-adapter": "^1.7.4",
     "@neondatabase/serverless": "^0.10.4",
     "@prisma/client": "^6.2.1",

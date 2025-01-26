@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 import base64
+from NEW_TEST import chatBot
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -33,17 +34,39 @@ def index():
 @app.route("/upload_audio", methods=["POST"])
 @cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def upload_audio():
-    data = request.get_json()["audio_file"]
+    data = request.get_json()
+    audio_file = data["audio_file"]
+    theme = data["theme"]
+    topic = data["topic"]
     print(f"{data=}")
-    base64_to_file(data, "test_download.wav")
+    base64_to_file(audio_file, "test_download.wav")
+    if theme == "interview":
+        chatBot.interview_audio_mode("test_download.mp4", topic)
+    elif theme == "conversational":
+        chatBot.conversational_audio_mode("test_download.mp4", topic)
+    elif theme == "public_speaking":
+        chatBot.public_speaking_audio_mode("test_download.mp4", topic)
+    elif theme == "debate":
+        chatBot.debate_audio_mode("test_download.mp4", topic)
     return "OK"
 
 @app.route("/upload_video", methods=["POST"])
 @cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def upload_video():
-    data = request.get_json()["video_file"]
+    data = request.get_json()
+    video_file = data["video_file"]
+    theme = data["theme"]
+    topic = data["topic"]
     print(f"{data=}")
-    base64_to_file(data, "test_download.mp4")
+    base64_to_file(video_file, "test_download.mp4")
+    if theme == "interview":
+        chatBot.interview_mode("test_download.mp4", topic)
+    elif theme == "conversational":
+        chatBot.conversational_mode("test_download.mp4", topic)
+    elif theme == "public_speaking":
+        chatBot.public_speaking_mode("test_download.mp4", topic)
+    elif theme == "debate":
+        chatBot.debate_mode("test_download.mp4", topic)
     return "OK"
 
 if __name__ == "__main__":
