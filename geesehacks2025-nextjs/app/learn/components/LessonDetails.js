@@ -57,10 +57,10 @@ const LessonDetails = ({ lesson, onClose }) => {
             </Button>
           </Link>
           <div>
-          <Button
+    <Button
             variant="outline"
             onClick={onClose}
-            className="text-gray-800 hover:text-gray-500 border-gray-600 shadow-md transition-all hover:scale-105 duration-300 w-full sm:w-[0vw]"
+            className="text-gray-800 hover:text-gray-500 border-gray-600 shadow-md transition-all hover:scale-105 duration-300 w-full sm:w-[10vw]"
           >
             Cancel
           </Button>
