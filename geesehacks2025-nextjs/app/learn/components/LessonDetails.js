@@ -9,6 +9,7 @@ import {
 
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const LessonDetails = ({ lesson, onClose }) => {
     if (!lesson) return null;
@@ -47,7 +48,9 @@ const LessonDetails = ({ lesson, onClose }) => {
                 </CardContent>
 
                 <CardFooter className="flex justify-center items-end">
-                    <Button>Start Lesson</Button>
+                    <Link href={`/assessment?lesson=${lesson.title}`}>
+                        <Button onClick={onClose}>Start Lesson</Button>
+                    </Link>
                 </CardFooter>
             </Card>
         </div>,

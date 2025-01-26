@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-function Learn() {
+function LearnPage() {
   const [selectedType, setSelectedType] = useState("Public Speaking");
 
   return (
@@ -54,4 +54,4 @@ function Learn() {
   );
 }
 
-export default Learn;
+export default LearnPage;
