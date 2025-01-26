@@ -12,13 +12,6 @@ const flattenLessons = (node, parent = null) => {
   ];
 };
 
-const findRootAncestor = (lesson) => {
-  let current = lesson;
-  while (current.parent) {
-    current = current.parent;
-  }
-  return current;
-};
 
 const AssessmentPage = () => {
     const searchParams = useSearchParams();
@@ -34,8 +27,8 @@ const AssessmentPage = () => {
   if (!lesson) return <div className="pt-20 text-white">Lesson not found</div>;
 
   //get main category
-  const mainCategory = findRootAncestor(lesson);
-  console.log(mainCategory.title)
+  const mainCategory = lesson.mainCategory;
+  console.log(mainCategory)
 
     const conversation = useConversation({
         onConnect: () => console.log('Connected'),
