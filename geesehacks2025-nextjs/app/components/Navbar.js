@@ -4,7 +4,7 @@ import { getUserById } from "../db/queries";
 
 const Navbar = async () => {
   const session = await auth();
-  const user = (session) ? await getUserById(session?.user.id) : null;
+  const user = (session?.user?.id) ? await getUserById(session.user.id) : null;
 
   return (
     <nav className="bg-gray-950 from-gray-950 to-black p-6">
@@ -23,10 +23,10 @@ const Navbar = async () => {
           <Link href="/profile" className="text-white">
             Profile
           </Link>
-          <Link href="./api/auth/signout" className="text-white">Sign out</Link>
+          <Link href="./api/auth/signout" className="text-white">Log out</Link>
           </>
           :
-          <Link href="/api/auth/signin" className="text-white">Sign in</Link>}
+          <Link href="/api/auth/signin" className="text-white">Log in</Link>}
         </div>
       </div>
     </nav>
