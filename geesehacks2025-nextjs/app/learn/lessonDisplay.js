@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-function LearnPage() {
+function LearnPage({completedNodes}) {
   const [selectedType, setSelectedType] = useState("Public Speaking");
   const [expanded, setExpanded] = useState(null);
 
@@ -34,7 +34,7 @@ function LearnPage() {
         <AutoSizer>
           {({ width, height }) => (
             <div style={{ width, height, overflow: "auto" }}>
-              <Lesson selectedType={selectedType} />
+              <Lesson selectedType={selectedType} completedNodes={completedNodes} />
             </div>
           )}
         </AutoSizer>
