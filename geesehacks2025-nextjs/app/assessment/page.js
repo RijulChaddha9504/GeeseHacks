@@ -162,9 +162,9 @@ const AssessmentPage = () => {
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
     }
-    setTimeout(async () => {
-      await send_audio();
-    }, 7000);
+    // setTimeout(async () => {
+    //   await send_audio();
+    // }, 7000);
   }, [conversation, mediaRecorder]);
 
     return (
