@@ -37,12 +37,17 @@ def upload_audio():
     data = request.get_json()
     audio_file = data["audio_file"]
     theme = data["theme"]
+    topic = data["topic"]
     print(f"{data=}")
     base64_to_file(audio_file, "test_download.wav")
     if theme == "interview":
-        chatBot.interview_audio_mode("test_download.mp4", "interview")
+        chatBot.interview_audio_mode("test_download.mp4", topic)
     elif theme == "conversational":
-        chatBot.conversational_audio_mode("test_download.mp4", "conversational")
+        chatBot.conversational_audio_mode("test_download.mp4", topic)
+    elif theme == "public_speaking":
+        chatBot.public_speaking_audio_mode("test_download.mp4", topic)
+    elif theme == "debate":
+        chatBot.debate_audio_mode("test_download.mp4", topic)
     return "OK"
 
 @app.route("/upload_video", methods=["POST"])
@@ -51,12 +56,17 @@ def upload_video():
     data = request.get_json()
     video_file = data["video_file"]
     theme = data["theme"]
+    topic = data["topic"]
     print(f"{data=}")
     base64_to_file(video_file, "test_download.mp4")
     if theme == "interview":
-        chatBot.interview_video_mode("test_download.mp4")
+        chatBot.interview_mode("test_download.mp4", topic)
     elif theme == "conversational":
-        chatBot.conversational_video_mode("test_download.mp4")
+        chatBot.conversational_mode("test_download.mp4", topic)
+    elif theme == "public_speaking":
+        chatBot.public_speaking_mode("test_download.mp4", topic)
+    elif theme == "debate":
+        chatBot.debate_mode("test_download.mp4", topic)
     return "OK"
 
 if __name__ == "__main__":

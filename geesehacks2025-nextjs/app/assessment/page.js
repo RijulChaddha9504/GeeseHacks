@@ -62,6 +62,7 @@ const AssessmentPage = () => {
           body: JSON.stringify({
             "audio_file": b64bytes,
             "theme": theme,
+            "topic": `${lesson.title}, ${lesson.description}`
           }),
           headers: {
             "Content-Type": "application/json",
@@ -79,6 +80,7 @@ const AssessmentPage = () => {
       body: JSON.stringify({
         "video_file": b64bytes,
         "theme": theme,
+        "topic": `${lesson.title}, ${lesson.description}`
       }),
       headers: {
         "Content-Type": "application/json",
