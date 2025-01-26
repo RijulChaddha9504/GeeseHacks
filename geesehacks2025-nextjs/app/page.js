@@ -37,7 +37,7 @@ export default function Home() {
           <Card>
             <CardHeader>
               <img
-                src="/"
+                src="/SpeakType.png"
                 alt="Choose Speaking Type"
                 className="rounded-t-lg w-full object-cover h-40"
               />
