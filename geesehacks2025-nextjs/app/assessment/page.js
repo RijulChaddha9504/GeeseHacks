@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from 'react';
 import React from 'react'
 import { useSearchParams } from 'next/navigation';
 import { lessonData } from '../learn/lessonData';
@@ -15,8 +16,16 @@ const flattenLessons = (node, parent = null) => {
     ];
 };
 
+export default function AssessmentPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <AssessmentContent />
+        </Suspense>
+    );
+}
 
-const AssessmentPage = () => {
+
+function AssessmentContent() {
     const [results, setResults] = useState();
 
     const searchParams = useSearchParams();
@@ -313,5 +322,3 @@ const AssessmentPage = () => {
         </div>
     );
 };
-
-export default AssessmentPage;
