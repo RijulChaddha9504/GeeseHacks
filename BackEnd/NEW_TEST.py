@@ -11,7 +11,6 @@ class chatBot:
                 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
         def interview_mode(audio_fil, topic):
-                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
                 chatBot.configure_api_key()
 
                 myfile = genai.upload_file(audio_fil)#"decoded_video.mp4")#"petal_20250118_012647.mp4")
@@ -54,7 +53,6 @@ class chatBot:
         #Conversational Agent:
     
         def conversational_mode(audio_fil, topic):
-                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
                 chatBot.configure_api_key()
 
                 myfile = genai.upload_file(audio_fil)
@@ -89,7 +87,6 @@ class chatBot:
                 return conversation_data
         
         def public_speaking_mode(audio_fil, topic):
-                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
                 chatBot.configure_api_key()
 
                 myfile = genai.upload_file(audio_fil)
@@ -124,7 +121,6 @@ class chatBot:
                 return public_data
 
         def debate_mode(audio_fil, topic):
-                #genai.configure(api_key="AIzaSyCZVHNl_bOBOHrrEyQuWut89fvuc15P0HQ")
                 chatBot.configure_api_key()
 
                 myfile = genai.upload_file(audio_fil)
