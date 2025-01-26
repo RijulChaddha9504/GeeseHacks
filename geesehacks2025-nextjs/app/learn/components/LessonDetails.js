@@ -35,7 +35,7 @@ import {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-            
+
           </button>
           <CardHeader className="text-center bg-gray-900 text-gray-100 py-6 rounded-t-xl">
             <CardTitle className="text-2xl font-bold">{lesson.title}</CardTitle>
@@ -48,7 +48,7 @@ import {
           </CardContent>
   
           <CardFooter className="flex justify-center items-center gap-4 p-6 bg-gray-900 rounded-b-xl">
-            <Link href={`/assessment?lesson=${lesson.title}`}>
+            <Link href={`/assessment?lesson=${encodeURIComponent(lesson.title)}`}>
               <Button
                 className="bg-indigo-700 text-white hover:bg-indigo-600 transition-all duration-300 hover:scale-105 shadow-md"
                 onClick={onClose}
