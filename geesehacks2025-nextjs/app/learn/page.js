@@ -7,6 +7,6 @@ export default async function Lessons() {
     const session = await getSession();
     const user = (session) ? await getUserById(session?.user.id) : null;
 
-    return <LearnPage completedNodes={user.completednodes}></LearnPage>
+    return <LearnPage completedNodes={user ? user.completednodes : null}></LearnPage>
 
 }

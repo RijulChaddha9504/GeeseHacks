@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-function LearnPage({completedNodes}) {
+function LearnPage() {
   const [selectedType, setSelectedType] = useState("Public Speaking");
   const [expanded, setExpanded] = useState(null);
 
@@ -29,12 +29,12 @@ function LearnPage({completedNodes}) {
   };
 
   return (
-    <div className="min-h-screen flex overflow-hidden bg-gradient-to-br from-gray-800 to-gray-950 pt-16 pb-16">
+    <div className="min-h-screen flex overflow-hidden bg-gradient-to-br from-gray-900 to-gray-950 pt-16">
       <div className="flex-1">
         <AutoSizer>
           {({ width, height }) => (
             <div style={{ width, height, overflow: "auto" }}>
-              <Lesson selectedType={selectedType} completedNodes={completedNodes} />
+              <Lesson selectedType={selectedType} />
             </div>
           )}
         </AutoSizer>
