@@ -4,29 +4,36 @@ import { getUserById } from "../db/queries";
 
 const Navbar = async () => {
   const session = await auth();
-  const user = (session?.user?.id) ? await getUserById(session.user.id) : null;
+  const user = session?.user?.id ? await getUserById(session.user.id) : null;
 
   return (
-    <nav className="bg-gray-950 from-gray-950 to-black p-6">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-white text-2xl font-bold">
+    <nav className="fixed w-full bg-gray-950 backdrop-blur-sm py-4">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <Link href="/" className="text-white text-2xl font-extrabold tracking-tight">
           GeeseTalk
         </Link>
-        <div className="space-x-4">
-          <Link href="/" className="text-white">
+        <div className="flex items-center space-x-6">
+          <Link href="/" className="text-gray-300 hover:text-white transition-colors">
             Home
           </Link>
-          <Link href="/learn" className="text-white">
+          <Link href="/learn" className="text-gray-300 hover:text-white transition-colors">
             Learn
           </Link>
-          {user ? <>
-          <Link href="/profile" className="text-white">
-            Profile
-          </Link>
-          <Link href="./api/auth/signout" className="text-white">Log out</Link>
-          </>
-          :
-          <Link href="/api/auth/signin" className="text-white">Log in</Link>}
+
+          {user ? (
+            <>
+              <Link href="/profile" className="text-gray-300 hover:text-white transition-colors">
+                Profile
+              </Link>
+              <Link href="/api/auth/signout" className="text-gray-300 hover:text-white transition-colors">
+                Log out
+              </Link>
+            </>
+          ) : (
+            <Link href="/api/auth/signin" className="text-gray-300 hover:text-white transition-colors">
+              Log in
+            </Link>
+          )}
         </div>
       </div>
     </nav>
@@ -34,4 +41,3 @@ const Navbar = async () => {
 }
 
 export default Navbar
-
