@@ -3,12 +3,13 @@ import google.generativeai as genai
 import json
 import vertexai
 from vertexai.preview.vision_models import ImageGenerationModel
+import os
 
 import time
 
 class chatBot:
         def interview_audio_mode(audio_fil):
-                genai.configure(api_key="REPLACE WITH KEY")
+                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
                 myfile = genai.upload_file(audio_fil)#"decoded_video.mp4")#"petal_20250118_012647.mp4")
                 print(f"{myfile=}")
@@ -47,7 +48,7 @@ class chatBot:
         #Conversational Agent:
     
         def conversational_audio_mode(audio_fil):
-                genai.configure(api_key="REPLACE WITH KEY")
+                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
                 myfile = genai.upload_file(audio_fil)
                 print(f"{myfile=}")
@@ -83,7 +84,7 @@ class chatBot:
                 print("Conversation results saved as conversation_results.json")
     
         def conversational_video_mode(video_fil):
-                genai.configure(api_key="REPLACE WITH KEY")
+                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
                 myfile = genai.upload_file(video_fil)
                 print(f"{myfile=}")
@@ -92,7 +93,7 @@ class chatBot:
                 while myfile.state.name == "PROCESSING":
                         print("processing video...")
                         time.sleep(5)
-                myfile = genai.get_file(myfile.name)
+                        myfile = genai.get_file(myfile.name)
 
 #prompt = "Analyze the emotions, facial expressions, and body language displayed in this clip. \
  #           Describe ways the person can improve their non verbal communication."
@@ -119,7 +120,7 @@ class chatBot:
                 print("Conversation results saved as conversation_video_results.json")
         
         def interview_video_mode(video_fil):
-                genai.configure(api_key="REPLACE WITH KEY")
+                genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
                 myfile = genai.upload_file(video_fil)
                 print(f"{myfile=}")
@@ -128,7 +129,7 @@ class chatBot:
                 while myfile.state.name == "PROCESSING":
                         print("processing video...")
                         time.sleep(5)
-                myfile = genai.get_file(myfile.name)
+                        myfile = genai.get_file(myfile.name)
 
 #prompt = "Analyze the emotions, facial expressions, and body language displayed in this clip. \
  #           Describe ways the person can improve their non verbal communication."
@@ -153,3 +154,8 @@ class chatBot:
                         json.dump(interview_data, json_file, indent=4)
     
                 print("Interview results saved as interview_video_results.json")
+
+chatBot.interview_audio_mode("enth_audio.wav")
+chatBot.conversational_audio_mode("enth_audio.wav")
+chatBot.conversational_video_mode("decoded_video.mp4")
+chatBot.interview_video_mode("decoded_video.mp4")
