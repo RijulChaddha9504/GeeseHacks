@@ -19,7 +19,7 @@ export default function Home() {
         </p>
         <a
           href="/learn"
-          className="inline-block bg-gray-700 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+          className="inline-block bg-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-indigo-500 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
         >
           Start Learning →
         </a>
@@ -80,7 +80,7 @@ export default function Home() {
                 Receive real-time feedback on your speaking performance from Mr. Goose.
               </CardDescription>
             </CardContent>
-            
+
           </Card>
         </div>
       </div>
