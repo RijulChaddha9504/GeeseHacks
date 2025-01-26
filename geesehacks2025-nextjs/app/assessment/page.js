@@ -42,7 +42,7 @@ const AssessmentPage = () => {
   const [conversationId, setConversationId] = useState("");
   const [mediaRecorder, setMediaRecorder] = useState();
   const [stream, setStream] = useState();
-  const [theme, setTheme] = useState("interview");
+  const [theme, setTheme] = useState(mainCategory);
 
   async function send_audio() { 
     const file = await fetch(`https://api.elevenlabs.io/v1/convai/conversations/${conversationId}/audio`, {
@@ -67,7 +67,7 @@ const AssessmentPage = () => {
           method: 'POST',
           body: JSON.stringify({
             "audio_file": b64bytes,
-            "theme": theme,
+            "theme": mainCategory,
             "topic": `${lesson.title}, ${lesson.description}`
           }),
           headers: {
@@ -85,7 +85,7 @@ const AssessmentPage = () => {
       method: 'POST',
       body: JSON.stringify({
         "video_file": b64bytes,
-        "theme": theme,
+        "theme": mainCategory,
         "topic": `${lesson.title}, ${lesson.description}`
       }),
       headers: {
@@ -93,22 +93,55 @@ const AssessmentPage = () => {
       }
     });
   }
+
+  const agent_id_key_map = {
+    "Interview Prep": "NWS4fdecsHKoe5nbLjq2",
+    "Casual Talk": "66U0J6hQxRvEZwDw2sh6",
+    "Public Speaking": "0vRyGereLyX6c3LRcshz",
+    "Debates": "II4aWYOJU9j3CNFTfPPr"
+  }
+
+  const prompt_key_map = {
+    "Public Speaking": "You are a trainer to produce masters in public speaking. \
+                            Try to coach the student's responses to help them appear more persuasive and confident. Keep your responses short UNDER 15 words.", 
+    "Debates": "You will serve as a debater which will debate against the student. Do not judge the student's responses but produce rebuttals that are convincing and effective. Keep your responses short UNDER 15 words.", 
+    "Interview Prep": "You are preparing the candidate for their next interview. Do not reveal any feedback about their performance. \
+                             Give short questions to learn key traits about the candidate for the company. Keep responses UNDER 15 words.",
+    "Casual Talk": "You are a helpful assistant. You are designed to have meaningful conversations with those you talk to. \
+                    Try to learn insightful events from the user by asking good questions. Keep responses UNDER 20 words. Be casual.",
+  }
+
+  const first_message_key_map = {
+    "Interview Prep": "To get more information, what position are you interviewing for?", 
+    "Debates": "What is the topic of your upcoming debate?", 
+    "Public Speaking": "What is the topic of your upcoming speech?", 
+    "Casual Talk": "What do you want to talk about?", 
+  }
+    
   const startConversation = useCallback(async () => {
     try {
         // Request microphone permission
-        const agentId = theme == "conversational" ? '66U0J6hQxRvEZwDw2sh6' : 'NWS4fdecsHKoe5nbLjq2';
-        await fetch("https://api.elevenlabs.io/v1/convai/agents/" + agentId, {
+        const agentId = agent_id_key_map[theme];
+        const res = await fetch("https://api.elevenlabs.io/v1/convai/agents/" + agentId, {
             method: 'PATCH',
             headers: {
                 'xi-api-key': 'sk_ddf785be7922cc7e6979f23e951b2d90b6ff250f0aab79c9', 
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                "prompt": `You are preparing the candidate for their next interview. Do not reveal any feedback about their performance. \
-                                Please target your question to improve and assess this skill: ${lesson.title}, ${lesson.description}. \
-                             Give short questions to learn key traits about the candidate for the company. Keep responses UNDER 15 words.`,
-            })
+            body: JSON.stringify(
+                {"conversation_config": {
+                    "agent": {
+                        "prompt": {
+                            "prompt": `${prompt_key_map[theme]}. \
+                            Please target your question / responses to improve and assess this skill: ${lesson.title}, ${lesson.description}.`,
+                        },
+                        "first_message": `Hello! Welcome to ${mainCategory} practice. I'll be helping you improve your ${lesson.title} skills by training ${lesson.description} today. \
+                        ${first_message_key_map[theme]}`
+                    }
+                }}
+            )
         });
+
         let recordedChunks = [];
         //let recordedVideo;
         //let preview;
@@ -168,9 +201,9 @@ const AssessmentPage = () => {
     if (stream) {
       stream.getTracks().forEach(track => track.stop());
     }
-    setTimeout(async () => {
-      await send_audio();
-    }, 7000);
+    // setTimeout(async () => {
+    //   await send_audio();
+    // }, 7000);
   }, [conversation, mediaRecorder]);
 
     return (
