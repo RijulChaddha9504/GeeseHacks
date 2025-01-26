@@ -34,9 +34,9 @@ const AssessmentPage = () => {
   const BACKEND_URL = "http://localhost:5000";
 
   const [conversationId, setConversationId] = useState("");
-  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>(null);
-  const [stream, setStream] = useState<MediaStream>(null);
-  const [theme, setTheme] = useState<string>("interview");
+  const [mediaRecorder, setMediaRecorder] = useState();
+  const [stream, setStream] = useState();
+  const [theme, setTheme] = useState("interview");
 
   async function send_audio() { 
     const file = await fetch(`https://api.elevenlabs.io/v1/convai/conversations/${conversationId}/audio`, {
@@ -171,7 +171,7 @@ const AssessmentPage = () => {
                 <h1 className="text-white">{lesson.title} Assessment</h1>
                 <p className="text-white">{lesson.description}</p>
 
-                {/* <button
+                <button
                     onClick={startConversation}
                     disabled={conversation.status === 'connected'}
                     className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300"
@@ -186,9 +186,9 @@ const AssessmentPage = () => {
                     Stop Conversation
                 </button>
                 <div className="flex flex-col items-center">
-                    <p>Status: {conversation.status}</p>
-                    <p>Agent is {conversation.isSpeaking ? 'speaking' : 'listening'}</p>
-                </div> */}
+                    <p className="text-white">Status: {conversation.status}</p>
+                    <p className="text-white">Agent is {conversation.isSpeaking ? 'speaking' : 'listening'}</p>
+                </div>
             </div>
         </div>
     );
