@@ -62,7 +62,7 @@ const ProfilePage = async () => {
                         </CardHeader>
                         
                         <CardContent className="px-8 pb-6">
-                            <div className="h-64">
+                            <div className="">
                                 <Chart pastTotalPerformances={pastTotalPerformances} />
                             </div>
                             
