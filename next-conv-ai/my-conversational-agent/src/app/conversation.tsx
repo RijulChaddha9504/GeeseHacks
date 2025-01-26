@@ -14,6 +14,8 @@ export function Conversation() {
   const BACKEND_URL = "http://localhost:5000";
 
   const [conversationId, setConversationId] = useState("");
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
+  const [stream, setStream] = useState<MediaStream>();
 
   async function send_audio() { 
     const file = await fetch(`https://api.elevenlabs.io/v1/convai/conversations/${conversationId}/audio`, {
@@ -48,7 +50,18 @@ export function Conversation() {
         console.error('Failed to convert audio to base64:', error);
       }
   }
-  let mediaRecorder : MediaRecorder;
+
+  async function send_video(b64bytes : string) {
+    const res = await fetch(BACKEND_URL + "/upload_video", {
+      method: 'POST',
+      body: JSON.stringify({
+        "video_file": b64bytes,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+  }
   const startConversation = useCallback(async () => {
     try {
         // Request microphone permission
@@ -58,8 +71,11 @@ export function Conversation() {
         await navigator.mediaDevices.getUserMedia({ audio: true, video : true })
         .then(stream => {
           //preview.srcObject = stream;
-          mediaRecorder = new MediaRecorder(stream);
+          setStream(stream);
+          const mediaRecorder = new MediaRecorder(stream);
+          setMediaRecorder(mediaRecorder);
           mediaRecorder.start();
+          console.log("mediaRecorder started");
   
           mediaRecorder.ondataavailable = (event) => {
             if (event.data.size > 0) {
@@ -70,11 +86,15 @@ export function Conversation() {
           mediaRecorder.onstop = () => {
             const blob = new Blob(recordedChunks, { type: 'video/webm' });
             const fileReader = new FileReader();
-            fileReader.onloadend = () => {
+            fileReader.onloadend = async () => {
                 if (typeof fileReader.result === 'string') {
                     const base64String = fileReader.result.split(',')[1]; 
+                    console.log("writing video to backend");
+                    await send_video(base64String);
                 }
             };
+
+            fileReader.readAsDataURL(blob); 
             //recordedVideo.src = url;
             //recordedVideo.controls = true; 
             //downloadLink.href = url;
@@ -98,11 +118,16 @@ export function Conversation() {
 
   const stopConversation = useCallback(async () => {
     await conversation.endSession();
-    mediaRecorder.stop();
+    if (mediaRecorder) {
+      mediaRecorder.stop();
+    }
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+    }
     setTimeout(async () => {
       await send_audio();
     }, 3000);
-  }, [conversation]);
+  }, [conversation, mediaRecorder]);
 
   return (
     <div className="flex flex-col items-center gap-4">
