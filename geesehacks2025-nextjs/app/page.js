@@ -33,54 +33,59 @@ export default function Home() {
           Follow these steps to start improving your speaking skills.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card>
-            <CardHeader>
-              <img
-                src="/SpeakType.png"
-                alt="Choose Speaking Type"
-                className="rounded-t-lg w-full object-cover h-40"
-              />
-              <CardTitle>Step 1: Choose a Speaking Type</CardTitle>
+        <div className="flex gap-8">
+          <Card className="flex flex-shrink-[1] flex-col shadow-2xl">
+            <CardHeader className="p-0 overflow-hidden rounded-t-lg">
+              <div className="relative aspect-video w-full">
+                <img
+                  src="/SpeakType.png"
+                  alt="Choose Speaking Type"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <CardTitle className="px-4 pt-4">Step 1: Choose a Speaking Type</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1 px-4 py-4">
               <CardDescription>
                 Select the type of speaking skill you want to practice, such as casual talk, public speaking, or interviews.
               </CardDescription>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <img
-                src="/"
-                alt="Follow the Roadmap"
-                className="rounded-t-lg w-full object-cover h-40"
-              />
-              <CardTitle>Step 2: Follow the Roadmap</CardTitle>
+          <Card className="flex flex-shrink-[1.2] flex-col shadow-2xl">
+            <CardHeader className="p-0 overflow-hidden rounded-t-lg">
+              <div className="relative aspect-video w-full">
+                <img
+                  src="/Roadmap.png"
+                  alt="Follow the Roadmap"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <CardTitle className="px-4 pt-4">Step 2: Follow the Roadmap</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1 px-4 py-4">
               <CardDescription>
                 Use our structured roadmap to practice step-by-step and track your progress.
               </CardDescription>
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <img
-                src="/"
-                alt="Get Feedback"
-                className="rounded-t-lg w-full object-cover h-40"
-              />
-              <CardTitle>Step 3: Get Feedback</CardTitle>
+          <Card className="flex flex-shrink-[1] flex-col shadow-2xl">
+            <CardHeader className="p-0 overflow-hidden rounded-t-lg">
+              <div className="relative aspect-video w-full bg-gray-200">
+                <img
+                  src="/Feedback.png"
+                  alt="Get Feedback"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <CardTitle className="px-4 pt-4">Step 3: Get Feedback</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-0 px-4 py-4">
               <CardDescription>
                 Receive real-time feedback on your speaking performance from Mr. Goose.
               </CardDescription>
             </CardContent>
-
           </Card>
         </div>
       </div>
