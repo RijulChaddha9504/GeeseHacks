@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
     "@auth/pg-adapter": "^1.7.4",
     "@neondatabase/serverless": "^0.10.4",
     "@prisma/client": "^6.2.1",
@@ -21,6 +22,9 @@
     "postgres": "^3.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-draggable": "^4.4.6",
+    "react-organizational-chart": "^2.2.1",
+    "react-virtualized-auto-sizer": "^1.0.25",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
