@@ -29,7 +29,7 @@ function LearnPage() {
   };
 
   return (
-    <div className="min-h-screen flex overflow-hidden bg-gradient-to-br from-gray-800 to-gray-950 pt-16 pb-16">
+    <div className="min-h-screen flex overflow-hidden bg-gradient-to-br from-gray-900 to-gray-950 pt-16">
       <div className="flex-1">
         <AutoSizer>
           {({ width, height }) => (
