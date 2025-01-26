@@ -16,6 +16,7 @@ export function Conversation() {
   const [conversationId, setConversationId] = useState("");
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
   const [stream, setStream] = useState<MediaStream>();
+  const [theme, setTheme] = useState<string>("interview");
 
   async function send_audio() { 
     const file = await fetch(`https://api.elevenlabs.io/v1/convai/conversations/${conversationId}/audio`, {
@@ -40,6 +41,7 @@ export function Conversation() {
           method: 'POST',
           body: JSON.stringify({
             "audio_file": b64bytes,
+            "theme": theme,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -56,6 +58,7 @@ export function Conversation() {
       method: 'POST',
       body: JSON.stringify({
         "video_file": b64bytes,
+        "theme": theme,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +110,7 @@ export function Conversation() {
 
         //   Start the conversation with your agent
         setConversationId(await conversation.startSession({
-            agentId: '66U0J6hQxRvEZwDw2sh6', // Replace with your agent ID
+            agentId: theme == "conversational" ? '66U0J6hQxRvEZwDw2sh6' : 'NWS4fdecsHKoe5nbLjq2', // Replace with your agent ID
         }));
       
         console.log("conversation id: ", conversationId); 
@@ -126,12 +129,16 @@ export function Conversation() {
     }
     setTimeout(async () => {
       await send_audio();
-    }, 3000);
+    }, 7000);
   }, [conversation, mediaRecorder]);
 
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex gap-2">
+        <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+            <option value="interview">Interview</option>
+            <option value="conversational">Conversational</option>
+        </select>
         <button
           onClick={startConversation}
           disabled={conversation.status === 'connected'}
