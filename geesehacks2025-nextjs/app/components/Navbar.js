@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { auth } from "@/auth"
-import { getUserById } from "../db/queries";
+import { getSession, getUserById } from "../db/queries";
 
 const Navbar = async () => {
-  const session = await auth();
+  const session = await getSession();
   const user = (session) ? await getUserById(session?.user.id) : null;
 
   return (
