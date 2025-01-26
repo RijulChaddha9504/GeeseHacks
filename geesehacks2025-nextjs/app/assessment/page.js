@@ -100,10 +100,18 @@ const AssessmentPage = () => {
       }
     });
   }
+
+  const agent_id_key_map = {
+    "interview": "NWS4fdecsHKoe5nbLjq2",
+    "conversational": "66U0J6hQxRvEZwDw2sh6",
+    "public_speaking": "0vRyGereLyX6c3LRcshz",
+    "debate": "II4aWYOJU9j3CNFTfPPr"
+  }
+
   const startConversation = useCallback(async () => {
     try {
         // Request microphone permission
-        const agentId = theme == "conversational" ? '66U0J6hQxRvEZwDw2sh6' : 'NWS4fdecsHKoe5nbLjq2';
+        const agentId = agent_id_key_map[theme];
         await fetch("https://api.elevenlabs.io/v1/convai/agents/" + agentId, {
             method: 'PATCH',
             headers: {
