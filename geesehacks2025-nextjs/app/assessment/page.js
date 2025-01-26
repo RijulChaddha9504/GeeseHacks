@@ -6,11 +6,10 @@ import { useSearchParams } from 'next/navigation';
 import { lessonData } from '../learn/lessonData';
 import { useConversation } from '@11labs/react';
 import { useCallback, useState } from 'react';
-<<<<<<< HEAD
-=======
+
 import { createRoot } from 'react-dom/client'
 import reactStringReplace from 'react-string-replace';
->>>>>>> f19e19f933ed8c18935ec4eef209721a62d11513
+
 
 const flattenLessons = (node, parent = null) => {
     return [
@@ -30,10 +29,7 @@ export default function AssessmentPage() {
 
 function AssessmentContent() {
     const [results, setResults] = useState();
-<<<<<<< HEAD
-=======
 
->>>>>>> f19e19f933ed8c18935ec4eef209721a62d11513
     const searchParams = useSearchParams();
     const lessonTitle = decodeURIComponent(searchParams.get('lesson'));
 
