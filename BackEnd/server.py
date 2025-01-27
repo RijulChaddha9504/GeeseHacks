@@ -21,7 +21,7 @@ def base64_to_file(base64_string, filename):
 
 
 @app.route("/")
-@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
+@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
 def index():
     return "Hello, World!"
 
@@ -32,7 +32,7 @@ def index():
 #     return "OK"
 
 @app.route("/upload_audio", methods=["POST"])
-@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
+@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
 def upload_audio():
     data = request.get_json()
     audio_file = data["audio_file"]
@@ -51,7 +51,7 @@ def upload_audio():
     return "OK"
 
 @app.route("/upload_video", methods=["POST"])
-@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
+@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
 def upload_video():
     data = request.get_json()
     video_file = data["video_file"]
