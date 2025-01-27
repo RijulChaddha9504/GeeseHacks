@@ -106,6 +106,7 @@ function AssessmentContent() {
             }),
             headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
             }
         });
         const res_json = await res.json();
