@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
+from io import BytesIO
 import base64
 from NEW_TEST import chatBot
 
@@ -16,8 +17,10 @@ def base64_to_file(base64_string, filename):
     filename: The desired filename for the output audio file (e.g., "output.wav").
 
   """
-  with open(filename, "wb") as file:
-    file.write(base64.b64decode(base64_string))
+  return BytesIO(base64.b64decode(base64_string))
+#   return "data:video/mp4;base64," + base64_string#base64.b64decode(base64_string)
+#   with open(filename, "wb") as file:
+#     file.write(base64.b64decode(base64_string))
 
 
 @app.route("/")
@@ -59,18 +62,22 @@ def upload_video():
         theme = data["theme"]
         topic = data["topic"]
         print(f"{data=}")
-        base64_to_file(video_file, "test_download.mp4")
+        bytes = base64_to_file(video_file, "test_download.mp4")
         if theme == "Interview Prep":
-            interview = chatBot.interview_mode("test_download.mp4", topic)
+            #interview = chatBot.interview_mode("test_download.mp4", topic)
+            interview = chatBot.interview_mode(bytes, topic)
             return jsonify(interview)
         elif theme == "Casual Talk":
-            conversation = chatBot.conversational_mode("test_download.mp4", topic)
+            #conversation = chatBot.conversational_mode("test_download.mp4", topic)
+            conversation = chatBot.conversational_mode(bytes, topic)
             return jsonify(conversation)
         elif theme == "Public Speaking":
-            public_speak = chatBot.public_speaking_mode("test_download.mp4", topic)
+            #public_speak = chatBot.public_speaking_mode("test_download.mp4", topic)
+            public_speak = chatBot.public_speaking_mode(bytes, topic)
             return jsonify(public_speak)
         elif theme == "Debates":
-            debate = chatBot.debate_mode("test_download.mp4", topic)
+            #debate = chatBot.debate_mode("test_download.mp4", topic)
+            debate = chatBot.debate_mode(bytes, topic)
             return jsonify(debate)
     except Exception as e:
         print(e)

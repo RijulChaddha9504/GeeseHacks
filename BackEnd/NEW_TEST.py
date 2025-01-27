@@ -11,7 +11,7 @@ class chatBot:
         def interview_mode(audio_fil, topic):
                 chatBot.configure_api_key()
 
-                myfile = genai.upload_file(audio_fil)#"decoded_video.mp4")#"petal_20250118_012647.mp4")
+                myfile = genai.upload_file(audio_fil, mime_type="video/mp4")#"decoded_video.mp4")#"petal_20250118_012647.mp4")
                 print(f"{myfile=}")
 
 #Videos need to be processed before you can use them.
@@ -53,7 +53,7 @@ class chatBot:
         def conversational_mode(audio_fil, topic):
                 chatBot.configure_api_key()
 
-                myfile = genai.upload_file(audio_fil)
+                myfile = genai.upload_file(audio_fil, mime_type="video/mp4")
                 print(f"{myfile=}")
 
 #Videos need to be processed before you can use them.
@@ -87,7 +87,7 @@ class chatBot:
         def public_speaking_mode(audio_fil, topic):
                 chatBot.configure_api_key()
 
-                myfile = genai.upload_file(audio_fil)
+                myfile = genai.upload_file(audio_fil, mime_type="video/mp4")
                 print(f"{myfile=}")
 
 #Videos need to be processed before you can use them.
@@ -121,7 +121,7 @@ class chatBot:
         def debate_mode(audio_fil, topic):
                 chatBot.configure_api_key()
 
-                myfile = genai.upload_file(audio_fil)
+                myfile = genai.upload_file(audio_fil, mime_type="video/mp4")
                 print(f"{myfile=}")
 
 #Videos need to be processed before you can use them.
