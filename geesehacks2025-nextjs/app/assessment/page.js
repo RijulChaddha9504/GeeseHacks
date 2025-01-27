@@ -53,7 +53,7 @@ function AssessmentContent() {
         onError: (error) => console.error('Error:', error),
     });
 
-    const BACKEND_URL = "https://9502-129-97-124-212.ngrok-free.app/"; //"http://localhost:5000";
+    const BACKEND_URL = "https://geese-hacks2025-backend.vercel.app"; //"http://localhost:5000";
 
     const [conversationId, setConversationId] = useState("");
     const [mediaRecorder, setMediaRecorder] = useState();
