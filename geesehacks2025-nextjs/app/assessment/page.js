@@ -53,7 +53,7 @@ function AssessmentContent() {
         onError: (error) => console.error('Error:', error),
     });
 
-    const BACKEND_URL = "https://9502-129-97-124-212.ngrok-free.app/"; //"http://localhost:5000";
+    const BACKEND_URL = "https://geese-hacks2025-backend.vercel.app"; //"http://localhost:5000";
 
     const [conversationId, setConversationId] = useState("");
     const [mediaRecorder, setMediaRecorder] = useState();
@@ -106,11 +106,13 @@ function AssessmentContent() {
             }),
             headers: {
                 "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
             }
         });
-        const res_json = await res.json();
-        setResults(res_json);
-        console.log(res_json);
+
+        const response_json = await res.json();
+        setResults(response_json);
+        console.log(response_json);
     }
 
     const agent_id_key_map = {
