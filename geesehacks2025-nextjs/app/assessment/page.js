@@ -108,9 +108,10 @@ function AssessmentContent() {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
             }
-        }).then(response => {
-            setResults(response.json());
-            console.log(response.json());
+        }).then(async response => {
+            const response_json = await response.json();
+            setResults(response_json);
+            console.log(response_json);
         });
     }
 

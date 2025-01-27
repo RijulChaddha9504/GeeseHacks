@@ -40,8 +40,8 @@ class chatBot:
                         "grade": int(gradeResult.text.strip()),  # Ensure the grade is an integer
                 } 
 
-                with open("interview_results.json", "w") as json_file:
-                        json.dump(interview_data, json_file, indent=4)
+                # with open("interview_results.json", "w") as json_file:
+                #         json.dump(interview_data, json_file, indent=4)
 
     
                 print("Interview results saved as interview_results.json")
@@ -77,8 +77,8 @@ class chatBot:
                         "grade": int(gradeResult.text.strip()),  # Ensure the grade is an integer
                 } 
     
-                with open("conversation_results.json", "w") as json_file:
-                        json.dump(conversation_data, json_file, indent=4)
+                # with open("conversation_results.json", "w") as json_file:
+                #         json.dump(conversation_data, json_file, indent=4)
     
                 print("Conversation results saved as conversation_results.json")
 
@@ -111,8 +111,8 @@ class chatBot:
                         "grade": int(gradeResult.text.strip()),  # Ensure the grade is an integer
                 } 
     
-                with open("public_speaking_results.json", "w") as json_file:
-                        json.dump(public_data, json_file, indent=4)
+                # with open("public_speaking_results.json", "w") as json_file:
+                #         json.dump(public_data, json_file, indent=4)
     
                 print("Public Speaking results saved as public_speaking_results.json")
 
@@ -145,8 +145,8 @@ class chatBot:
                         "grade": int(gradeResult.text.strip()),  # Ensure the grade is an integer
                 } 
     
-                with open("debate_results.json", "w") as json_file:
-                        json.dump(public_data, json_file, indent=4)
+                # with open("debate_results.json", "w") as json_file:
+                #         json.dump(public_data, json_file, indent=4)
     
                 print("Debate Speaking results saved as debate_results.json")
 
