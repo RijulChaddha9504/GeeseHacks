@@ -53,24 +53,28 @@ def upload_audio():
 @app.route("/upload_video", methods=["POST"])
 @cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
 def upload_video():
-    data = request.get_json()
-    video_file = data["video_file"]
-    theme = data["theme"]
-    topic = data["topic"]
-    print(f"{data=}")
-    base64_to_file(video_file, "test_download.mp4")
-    if theme == "Interview Prep":
-        interview = chatBot.interview_mode("test_download.mp4", topic)
-        return jsonify(interview)
-    elif theme == "Casual Talk":
-        conversation = chatBot.conversational_mode("test_download.mp4", topic)
-        return jsonify(conversation)
-    elif theme == "Public Speaking":
-        public_speak = chatBot.public_speaking_mode("test_download.mp4", topic)
-        return jsonify(public_speak)
-    elif theme == "Debates":
-        debate = chatBot.debate_mode("test_download.mp4", topic)
-        return jsonify(debate)
+    try: 
+        data = request.get_json()
+        video_file = data["video_file"]
+        theme = data["theme"]
+        topic = data["topic"]
+        print(f"{data=}")
+        base64_to_file(video_file, "test_download.mp4")
+        if theme == "Interview Prep":
+            interview = chatBot.interview_mode("test_download.mp4", topic)
+            return jsonify(interview)
+        elif theme == "Casual Talk":
+            conversation = chatBot.conversational_mode("test_download.mp4", topic)
+            return jsonify(conversation)
+        elif theme == "Public Speaking":
+            public_speak = chatBot.public_speaking_mode("test_download.mp4", topic)
+            return jsonify(public_speak)
+        elif theme == "Debates":
+            debate = chatBot.debate_mode("test_download.mp4", topic)
+            return jsonify(debate)
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)})
 
 
 if __name__ == "__main__":
