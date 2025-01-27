@@ -108,11 +108,11 @@ function AssessmentContent() {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
             }
-        }).then(async response => {
-            const response_json = await response.json();
-            setResults(response_json);
-            console.log(response_json);
         });
+
+        const response_json = await res.json();
+        setResults(response_json);
+        console.log(response_json);
     }
 
     const agent_id_key_map = {
