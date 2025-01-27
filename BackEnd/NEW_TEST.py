@@ -1,8 +1,6 @@
 import google.generativeai as genai
 #from google import genai
 import json
-import vertexai
-from vertexai.preview.vision_models import ImageGenerationModel
 import os
 import time
 
