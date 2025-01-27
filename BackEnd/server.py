@@ -6,7 +6,7 @@ from NEW_TEST import chatBot
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 def base64_to_file(base64_string, filename):
   """
@@ -24,7 +24,7 @@ def base64_to_file(base64_string, filename):
 
 
 @app.route("/")
-@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
+#@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
 def index():
     return "Hello, World!"
 
@@ -35,7 +35,7 @@ def index():
 #     return "OK"
 
 @app.route("/upload_audio", methods=["POST"])
-@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
+#@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization', 'Access-Control-Allow-Origin'])
 def upload_audio():
     data = request.get_json()
     audio_file = data["audio_file"]
@@ -54,7 +54,7 @@ def upload_audio():
     return "OK"
 
 @app.route("/upload_video", methods=["POST"])
-@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization'])
+#@cross_origin(origins="*", allow_headers=['Content-Type', 'Authorization', 'Access-Control-Allow-Origin'])
 def upload_video():
     try: 
         data = request.get_json()
@@ -66,19 +66,27 @@ def upload_video():
         if theme == "Interview Prep":
             #interview = chatBot.interview_mode("test_download.mp4", topic)
             interview = chatBot.interview_mode(bytes, topic)
-            return jsonify(interview)
+            response = jsonify(interview)
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
         elif theme == "Casual Talk":
             #conversation = chatBot.conversational_mode("test_download.mp4", topic)
             conversation = chatBot.conversational_mode(bytes, topic)
-            return jsonify(conversation)
+            response = jsonify(conversation)
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
         elif theme == "Public Speaking":
             #public_speak = chatBot.public_speaking_mode("test_download.mp4", topic)
             public_speak = chatBot.public_speaking_mode(bytes, topic)
-            return jsonify(public_speak)
+            response = jsonify(public_speak)
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
         elif theme == "Debates":
             #debate = chatBot.debate_mode("test_download.mp4", topic)
             debate = chatBot.debate_mode(bytes, topic)
-            return jsonify(debate)
+            response = jsonify(debate)
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
     except Exception as e:
         print(e)
         return jsonify({"error": str(e)})
